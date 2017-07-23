@@ -44,7 +44,7 @@ public class User implements Serializable {
         this.firstName = firstName;
     }
 
-    @Column(name = "lastName", nullable = false, insertable = true, updatable = true)
+    @Column(name = "lastName", nullable = true, insertable = true, updatable = true)
     public String getLastName() {
         return lastName;
     }
