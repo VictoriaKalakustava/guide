@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/test")
 public class TestController {
 
-    @RequestMapping(value = "", method= RequestMethod.GET)
+    @RequestMapping(value = "", method= RequestMethod.POST)
     public ResponseEntity<User> myMethod() {
 
         System.out.println("Test controller");

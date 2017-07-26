@@ -30,9 +30,11 @@ public class SignUpController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<UserDTO> signUp(@RequestBody UserDTO dto) {
+        System.out.println(dto);
         if(userService.findByLogin(dto.getLogin()).isPresent()) {
             return new ResponseEntity<>(dto, HttpStatus.CONFLICT);
         }
+        System.out.println(dto);
         User user = UserConverter.convert(dto);
         String key = generateActivationKey(user.getId());
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -40,6 +42,14 @@ public class SignUpController {
         UserDTO userFromDB = UserConverter.convert(userService.save(user));
         sender.sendEmail(userFromDB.getEmail(), "Account activation", PREFIX + key);
         return new ResponseEntity<>(userFromDB, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/login/is-exist", method = RequestMethod.POST)
+    public ResponseEntity<Boolean> isLoginExist(@RequestBody String login) {
+        if(userService.findByLogin(login).isPresent()) {
+            return new ResponseEntity<>(Boolean.TRUE, HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(Boolean.FALSE, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/enable", params = {"key"}, method = RequestMethod.GET)
