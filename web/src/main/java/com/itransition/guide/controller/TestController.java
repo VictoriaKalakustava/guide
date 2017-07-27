@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping(value = "/test")
 public class TestController {
 
