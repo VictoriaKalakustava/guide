@@ -13,10 +13,10 @@ public class User implements Serializable {
 
     private String login;
     private String password;
-    private String sex;
+    private boolean sex;
     private String about;
     private String image;
-    private String role;
+    private boolean role;
 
     private boolean isActivated;
     private String enableKey;
@@ -44,6 +44,31 @@ public class User implements Serializable {
         this.firstName = firstName;
     }
 
+    @Column(name = "sex", nullable = true, insertable = true, updatable = true)
+    public boolean getSex() {return sex; }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
+
+    @Column(name = "about", nullable = true, insertable = true, updatable = true)
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    @Column(name = "image", nullable = true, insertable = true, updatable = true)
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Column(name = "lastName", nullable = true, insertable = true, updatable = true)
     public String getLastName() {
         return lastName;
@@ -51,6 +76,15 @@ public class User implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Column(name = "role", nullable = false, insertable = true, updatable = true)
+    public boolean getRole() {
+        return role;
+    }
+
+    public void setRole(boolean role) {
+        this.role = role;
     }
 
     @Column(name = "email", nullable = true, insertable = true, updatable = true)

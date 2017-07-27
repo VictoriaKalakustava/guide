@@ -12,9 +12,13 @@ public class UserDTO {
     private String name;
     private String surname;
     private String email;
+    private String image;
+    private String about;
 
     private String login;
     private String password;
 
+    private boolean isRole;
+    private boolean isSex;
     private boolean isActivated;
 }

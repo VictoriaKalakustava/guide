@@ -10,10 +10,14 @@ public class UserConverter {
         user.setFirstName(dto.getName());
         user.setLastName(dto.getSurname());
         user.setEmail(dto.getEmail());
+        user.setAbout(dto.getAbout());
+        user.setImage(dto.getImage());
 
         user.setLogin(dto.getLogin());
         user.setPassword(dto.getPassword());
 
+        user.setRole(dto.isRole());
+        user.setSex(dto.isSex());
         user.setIsActivated(dto.isActivated());
         return user;
     }
@@ -24,10 +28,14 @@ public class UserConverter {
         dto.setName(user.getFirstName());
         dto.setSurname(user.getLastName());
         dto.setEmail(user.getEmail());
+        dto.setAbout(user.getAbout());
+        dto.setImage(user.getImage());
 
         dto.setLogin(user.getLogin());
         dto.setPassword(user.getPassword());
 
+        dto.setRole(user.getRole());
+        dto.setSex(user.getSex());
         dto.setActivated(user.getIsActivated());
         return dto;
     }
