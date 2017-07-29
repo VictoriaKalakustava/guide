@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.Random;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RequestMapping(value = "/sign-up")
 public class SignUpController {
 

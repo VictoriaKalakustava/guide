@@ -13,7 +13,7 @@ import java.util.Optional;
 
 //TODO make something with security
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+//@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping(value = "/get-user")
 public class GetUserController {
