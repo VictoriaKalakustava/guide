@@ -31,6 +31,7 @@ public class TokenAuthenticationService {
 
     static Authentication getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
+        System.out.println("It's token authentication service\n" + token);
         if (token != null) {
             // parse the token.
             String user = Jwts.parser()

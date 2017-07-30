@@ -3,12 +3,14 @@ package com.itransition.guide.controller;
 import com.itransition.guide.converter.UserConverter;
 import com.itransition.guide.dto.UserDTO;
 import com.itransition.guide.entity.User;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.itransition.guide.services.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 //TODO make something with security
@@ -21,10 +23,11 @@ public class GetUserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping( params = {"login"}, method = RequestMethod.GET)
-    public ResponseEntity<UserDTO> getUser(@RequestParam(value = "login") String login) {
-
-        Optional<User> optional = userService.findByLogin(login);
+    @RequestMapping( method = RequestMethod.POST)
+    public ResponseEntity<UserDTO> getUser(@RequestBody String userc,HttpServletRequest request) {
+        System.out.println(request);
+        System.out.println(userc.split(":")[1].split("\"")[1]);
+        Optional<User> optional = userService.findByLogin(userc.split(":")[1].split("\"")[1]);
         if(optional.isPresent()) {
             User user = optional.get();
             return new ResponseEntity<>(UserConverter.convert(user), HttpStatus.OK);

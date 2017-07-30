@@ -12,13 +12,14 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@CrossOrigin(origins = "http://localhost:4200")
 public class JWTAuthenticationFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request,
                          ServletResponse response,
                          FilterChain filterChain)
             throws IOException, ServletException {
+        System.out.println("it's working JWTauthenticationFilter");
+        //System.out.println(request);
         Authentication authentication = TokenAuthenticationService
                 .getAuthentication((HttpServletRequest)request);
 
