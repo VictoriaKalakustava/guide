@@ -9,8 +9,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -26,14 +24,16 @@ public class SimpleCORSFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, Authorization, Cache-Control");
         response.setHeader("Access-Control-Expose-Headers", "Authorization");
-        System.out.println("doing filter work");
-        chain.doFilter(req, res);
+        if (notPreflight(request)) {
+            chain.doFilter(req, res);
+        }
+
     }
 
     @Override
@@ -42,6 +42,10 @@ public class SimpleCORSFilter implements Filter {
 
     @Override
     public void destroy() {
+    }
+
+    private boolean notPreflight(HttpServletRequest request) {
+        return !"OPTIONS".equals(request.getMethod());
     }
 
 }

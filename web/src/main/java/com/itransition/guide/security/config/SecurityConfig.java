@@ -28,7 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AppUserDetailService userDetailService;
 
     @Override
-    @CrossOrigin(origins = "http://localhost:4200")
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
             .antMatchers("/").permitAll()
