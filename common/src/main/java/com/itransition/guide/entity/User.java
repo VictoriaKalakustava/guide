@@ -2,6 +2,7 @@ package com.itransition.guide.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class User implements Serializable {
@@ -17,6 +18,7 @@ public class User implements Serializable {
     private String about;
     private String image;
     private boolean role;
+    private List<Instruction> instructions;
 
     private boolean isActivated;
     private String enableKey;
@@ -132,4 +134,12 @@ public class User implements Serializable {
         this.enableKey = enableKey;
     }
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public List<Instruction> getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(List<Instruction> instructions) {
+        this.instructions = instructions;
+    }
 }
