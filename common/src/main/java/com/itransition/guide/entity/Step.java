@@ -8,6 +8,7 @@ public class Step {
     Long id;
     String title;
     List<Element> elements;
+    Instruction instruction;
 
     public Step() {
     }
@@ -21,6 +22,15 @@ public class Step {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @ManyToOne
+    public Instruction getInstruction() {
+        return instruction;
+    }
+
+    public void setInstruction(Instruction instruction) {
+        this.instruction = instruction;
     }
 
     @Column(name = "title", nullable = false, updatable = false)
