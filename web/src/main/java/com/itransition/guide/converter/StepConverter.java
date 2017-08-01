@@ -19,7 +19,7 @@ public class StepConverter {
         dto.setTitle(step.getTitle());
         List<ElementDTO> elementDTO = new ArrayList<>();
         for (Element element: step.getElements()) {
-            elementDTO.add(ElementConverter.converter(element));
+            elementDTO.add(ElementConverter.convert(element));
         }
         dto.setElements(elementDTO);
         return dto;

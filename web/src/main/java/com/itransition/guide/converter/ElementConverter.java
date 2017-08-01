@@ -4,7 +4,7 @@ import com.itransition.guide.dto.ElementDTO;
 import com.itransition.guide.entity.Element;
 
 public class ElementConverter {
-    public static ElementDTO converter(Element element) {
+    public static ElementDTO convert(Element element) {
         ElementDTO dto = new ElementDTO();
         dto.setId(element.getId());
         dto.setStepId(element.getStep().getId());

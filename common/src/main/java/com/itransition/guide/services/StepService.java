@@ -13,9 +13,6 @@ public class StepService {
     private StepRepository stepRepository;
 
     public Optional<Step> getStepById(Long id) {
-        System.out.println("CURRENT ID: " + id);
-
-        System.out.println(stepRepository.findById(id).getTitle());
         return Optional.ofNullable(stepRepository.findById(id));
     }
 }
