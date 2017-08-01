@@ -42,7 +42,7 @@ public class Step {
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "step", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "step", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Element> getElements() {
         return elements;
     }

@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
 import java.util.Random;
 
 @RestController
@@ -52,22 +53,22 @@ public class SignUpController {
         return new ResponseEntity<>(Boolean.FALSE, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/enable", params = {"key"}, method = RequestMethod.GET)
-    public ModelAndView enableAccount(@RequestParam(value = "key") String key) {
-        ModelAndView model = new ModelAndView();
-        Optional<User> optional = userService.findUserByKey(key);
-        if(optional.isPresent()) {
-            model.setViewName("redirect:/logout");
-            User user = optional.get();
-            user.setEnableKey(null);
-            user.setIsActivated(true);
-            userService.save(user);
-        } else {
-            model.setViewName("redirect:/used-link");
-        }
-
-        return model;
-    }
+//    @RequestMapping(value = "/enable", params = {"key"}, method = RequestMethod.GET)
+//    public ModelAndView enableAccount(@RequestParam(value = "key") String key) {
+//        ModelAndView model = new ModelAndView();
+//        Optional<User> optional = userService.findUserByKey(key);
+//        if(optional.isPresent()) {
+//            model.setViewName("redirect:/logout");
+//            User user = optional.get();
+//            user.setEnableKey(null);
+//            user.setIsActivated(true);
+//            userService.save(user);
+//        } else {
+//            model.setViewName("redirect:/used-link");
+//        }
+//
+//        return model;
+//    }
 
     private String generateActivationKey(Long id) {
         return new BCryptPasswordEncoder().encode(getSaltString() + id);
