@@ -21,11 +21,12 @@ public class UpdateProfileController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<UserDTO> signUp(@RequestBody UserDTO dto) {
-        if(userService.findByLogin(dto.getLogin()).isPresent()) {
+        /*if(userService.findByLogin(dto.getLogin()).isPresent()) {
             return new ResponseEntity<>(dto, HttpStatus.CONFLICT);
         }
         User user = UserConverter.convert(dto);
-        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));*/
+        User user = UserConverter.convert(dto);
         UserDTO userFromDB = UserConverter.convert(userService.save(user));
         return new ResponseEntity<>(userFromDB, HttpStatus.OK);
     }
