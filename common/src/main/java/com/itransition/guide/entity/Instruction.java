@@ -24,7 +24,7 @@ public class Instruction {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "instruction", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "instruction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Step> getStep() {
         return step;
     }

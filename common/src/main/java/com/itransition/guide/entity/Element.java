@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 public class Element {
     Long id;
-    Long stepId;
     String value;
     ElementType type;
     Step step;
@@ -24,15 +23,6 @@ public class Element {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    @Column(name= "id_step", nullable = false, insertable = true, updatable = false)
-    public Long getStepId() {
-        return stepId;
-    }
-
-    public void setStepId(Long stepId) {
-        this.stepId = stepId;
     }
 
     @Column(name= "step_value", nullable = false)

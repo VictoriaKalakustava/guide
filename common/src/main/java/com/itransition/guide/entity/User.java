@@ -134,7 +134,7 @@ public class User implements Serializable {
         this.enableKey = enableKey;
     }
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Instruction> getInstructions() {
         return instructions;
     }
