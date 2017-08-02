@@ -2,8 +2,8 @@ package com.itransition.guide.security.config;
 
 import com.itransition.guide.security.AppUserDetailService;
 import com.itransition.guide.security.JWTAuthenticationFilter;
+import com.itransition.guide.security.JWTLoginFilter;
 import com.itransition.guide.security.SimpleCORSFilter;
-import com.itransition.guide.security.details.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -14,8 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import com.itransition.guide.security.JWTLoginFilter;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Configuration
@@ -32,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().authorizeRequests()
             .antMatchers("/sign-up/**").permitAll()
             .antMatchers("/login/is-exist/**").permitAll()
+            .antMatchers("/instruction/add/**").permitAll()
             .antMatchers(HttpMethod.POST,"/login").permitAll()
             .anyRequest().authenticated()
             .and()
