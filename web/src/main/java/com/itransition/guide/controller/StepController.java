@@ -1,16 +1,17 @@
 package com.itransition.guide.controller;
 
+import com.itransition.guide.converter.ElementConverter;
 import com.itransition.guide.converter.StepConverter;
+import com.itransition.guide.dto.ElementDTO;
 import com.itransition.guide.dto.StepDTO;
+import com.itransition.guide.entity.Element;
 import com.itransition.guide.entity.Step;
+import com.itransition.guide.services.ElementService;
 import com.itransition.guide.services.StepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -29,5 +30,15 @@ public class StepController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
+    }
+
+    @RequestMapping(value="/set-step", method = RequestMethod.POST)
+    public ResponseEntity<StepDTO> setElement(@RequestBody StepDTO stepDTO){
+        System.out.println("save step");
+        System.out.println(stepDTO.toString());
+        ElementService elementService = new ElementService();
+        Step step = StepConverter.convert(stepDTO);
+        StepDTO dto = StepConverter.convert(stepService.save(step));
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }

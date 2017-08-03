@@ -17,11 +17,26 @@ public class StepConverter {
         dto.setId(step.getId());
         dto.setInstructionId(step.getInstruction().getId());
         dto.setTitle(step.getTitle());
+        dto.setPosition(step.getPosition());
         List<ElementDTO> elementDTO = new ArrayList<>();
         for (Element element: step.getElements()) {
             elementDTO.add(ElementConverter.convert(element));
         }
         dto.setElements(elementDTO);
         return dto;
+    }
+    public static Step convert(StepDTO stepDTO){
+        Step step = new Step();
+        step.setId(stepDTO.getId());
+        step.setInstruction(stepDTO.getInstruction());
+        step.setTitle(stepDTO.getTitle());
+        List<Element> element = new ArrayList<>();
+        for(ElementDTO elementDTO:stepDTO.getElements()){
+            element.add(ElementConverter.convert(elementDTO));
+
+        }
+        step.setElements(element);
+        step.setPosition(stepDTO.getPosition());
+        return step;
     }
 }

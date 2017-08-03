@@ -9,6 +9,7 @@ public class Element {
     Long id;
     String value;
     ElementType type;
+    Long position;
     Step step;
 
     public Element() {
@@ -23,6 +24,15 @@ public class Element {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Column(name = "position_element", nullable = false, insertable = true, updatable = true)
+    public Long getPosition() {
+        return position;
+    }
+
+    public void setPosition(Long position) {
+        this.position = position;
     }
 
     @Column(name= "step_value", nullable = false)
