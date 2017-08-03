@@ -9,6 +9,8 @@ public class Instruction {
     String title;
     User user;
     List<Step> step;
+    List<Comment> comments;
+    List<Tag> tags;
 
     public Instruction() {
     }
@@ -52,4 +54,24 @@ public class Instruction {
         this.user = user;
     }
 
+    @OneToMany(mappedBy = "instruction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "instruction_tag",
+            joinColumns = { @JoinColumn(name = "id_instruction") },
+            inverseJoinColumns = { @JoinColumn(name = "id_tag") })
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
 }

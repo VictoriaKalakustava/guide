@@ -22,7 +22,7 @@ public class GetUserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "get-by-id",method = RequestMethod.GET)
+    @RequestMapping(value = "",method = RequestMethod.POST)
     public ResponseEntity<UserDTO> getUser(@RequestBody String userc,HttpServletRequest request) {
         System.out.println(request);
         System.out.println(userc.split(":")[1].split("\"")[1]);
