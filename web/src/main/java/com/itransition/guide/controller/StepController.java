@@ -39,6 +39,7 @@ public class StepController {
         ElementService elementService = new ElementService();
         Step step = StepConverter.convert(stepDTO);
         StepDTO dto = StepConverter.convert(stepService.save(step));
+        System.out.println(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }
