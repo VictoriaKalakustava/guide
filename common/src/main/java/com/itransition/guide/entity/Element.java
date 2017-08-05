@@ -35,7 +35,7 @@ public class Element {
         this.position = position;
     }
 
-    @Column(name= "step_value", nullable = false)
+    @Column(name= "element_value", nullable = false)
     public String getValue() {
         return value;
     }
@@ -45,7 +45,7 @@ public class Element {
     }
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "step_type", nullable = false, updatable = false)
+    @Column(name = "element_type", nullable = false, updatable = false)
     public ElementType getType() {
         return type;
     }
