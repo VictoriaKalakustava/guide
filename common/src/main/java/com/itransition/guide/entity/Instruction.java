@@ -1,16 +1,21 @@
 package com.itransition.guide.entity;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Indexed
 @Entity
 public class Instruction {
-    Long id;
-    String title;
-    User user;
-    List<Step> step;
-    List<Comment> comments;
-    List<Tag> tags;
+    private Long id;
+    private String title;
+    private User user;
+    private List<Step> step;
+    private List<Comment> comments;
+    private List<Tag> tags;
 
     public Instruction() {
     }
@@ -26,6 +31,7 @@ public class Instruction {
         this.id = id;
     }
 
+    @IndexedEmbedded
     @OneToMany(mappedBy = "instruction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Step> getStep() {
         return step;
@@ -35,7 +41,7 @@ public class Instruction {
         this.step = step;
     }
 
-
+    @Field
     @Column(name = "title", nullable = false)
     public String getTitle() {
         return title;
@@ -45,6 +51,7 @@ public class Instruction {
         this.title = title;
     }
 
+    @IndexedEmbedded
     @ManyToOne
     public User getUser() {
         return user;
@@ -54,6 +61,7 @@ public class Instruction {
         this.user = user;
     }
 
+    @IndexedEmbedded
     @OneToMany(mappedBy = "instruction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Comment> getComments() {
         return comments;
@@ -63,10 +71,12 @@ public class Instruction {
         this.comments = comments;
     }
 
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "instruction_tag",
             joinColumns = { @JoinColumn(name = "id_instruction") },
             inverseJoinColumns = { @JoinColumn(name = "id_tag") })
+    @IndexedEmbedded
     public List<Tag> getTags() {
         return tags;
     }

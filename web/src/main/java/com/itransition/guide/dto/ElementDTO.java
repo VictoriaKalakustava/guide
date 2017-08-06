@@ -1,6 +1,5 @@
 package com.itransition.guide.dto;
 
-import com.itransition.guide.entity.Step;
 import com.itransition.guide.entity.enums.ElementType;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,5 +14,4 @@ public class ElementDTO {
     ElementType type;
     Long position;
     Long stepId;
-    Step step;
 }

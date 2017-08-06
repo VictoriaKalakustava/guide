@@ -1,16 +1,20 @@
 package com.itransition.guide.entity;
 
 import com.itransition.guide.entity.enums.ElementType;
+import org.hibernate.search.annotations.ContainedIn;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 
+@Indexed
 @Entity
 public class Element {
-    Long id;
-    String value;
-    ElementType type;
-    Long position;
-    Step step;
+    private Long id;
+    private String value;
+    private ElementType type;
+    private Long position;
+    private Step step;
 
     public Element() {
     }
@@ -35,6 +39,7 @@ public class Element {
         this.position = position;
     }
 
+    @Field
     @Column(name= "element_value", nullable = false)
     public String getValue() {
         return value;
@@ -54,6 +59,7 @@ public class Element {
         this.type = type;
     }
 
+    @ContainedIn
     @ManyToOne
     @JoinColumn(name="step_id")
     public Step getStep() {

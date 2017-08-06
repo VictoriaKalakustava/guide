@@ -1,6 +1,5 @@
 package com.itransition.guide.dto;
 
-import com.itransition.guide.entity.Instruction;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,5 +15,4 @@ public class StepDTO {
     List<ElementDTO> elements;
     Long instructionId;
     Integer position;
-    Instruction instruction;
 }

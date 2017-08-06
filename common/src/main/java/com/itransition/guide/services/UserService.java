@@ -32,4 +32,7 @@ public class UserService {
         return Optional.ofNullable(userRepository.findById(id));
     }
 
+    public Optional<User> findUserByKey(String key) {
+        return Optional.ofNullable(userRepository.getUserByEnableKey(key));
+    }
 }
