@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InstructionRepository extends JpaRepository<Instruction, Long> {
+    Instruction findById(Long id);
     Instruction findInstructionByUser(Long userId);
-    Instruction save(Instruction instruction);
 }

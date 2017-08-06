@@ -12,8 +12,8 @@ import java.util.List;
 @Setter
 @ToString
 public class InstructionDTO {
-    Long id;
-    String title;
-    Long userId;
-    List<Step> step;
+    private Long id;
+    private String title;
+    private Long userId;
+    private List<Step> step;
 }
