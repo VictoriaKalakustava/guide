@@ -7,6 +7,7 @@ import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,9 @@ public class SearchController {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private InstructionConverter instructionConverter;
+
     private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 
     @RequestMapping(value="", method = RequestMethod.POST)
@@ -34,7 +38,7 @@ public class SearchController {
         List result = prepareQuery(searchParam).getResultList();
         List<InstructionDTO> dto = new ArrayList<>();
         for (Instruction instruction: (List<Instruction>)result) {
-            dto.add(InstructionConverter.convert(instruction));
+            dto.add(instructionConverter.convert(instruction));
         }
         entityManager.getTransaction().commit();
         return new ResponseEntity<List>(dto, HttpStatus.OK);
