@@ -33,13 +33,21 @@ public class StepController {
     }
 
     @RequestMapping(value="/set-step", method = RequestMethod.POST)
-    public ResponseEntity<StepDTO> setElement(@RequestBody StepDTO stepDTO){
+    public ResponseEntity<StepDTO> setStep(@RequestBody StepDTO stepDTO){
         System.out.println("save step");
         System.out.println(stepDTO.toString());
-        ElementService elementService = new ElementService();
         Step step = StepConverter.convert(stepDTO);
         StepDTO dto = StepConverter.convert(stepService.save(step));
         System.out.println(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/del-step", method = RequestMethod.POST)
+    public ResponseEntity<HttpStatus> delStep(@RequestBody StepDTO stepDTO){
+        System.out.println("delete step");
+        System.out.println(stepDTO.toString());
+            Step step = StepConverter.convert(stepDTO);
+            stepService.delete(step);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

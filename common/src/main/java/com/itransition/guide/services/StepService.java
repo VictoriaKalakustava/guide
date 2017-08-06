@@ -16,6 +16,9 @@ public class StepService {
     @Transactional
     public Step save(Step step){ return stepRepository.saveAndFlush(step);}
 
+    @Transactional
+    public void delete(Step step){ stepRepository.delete(step);   }
+
     public Optional<Step> getStepById(Long id) {
         return Optional.ofNullable(stepRepository.findById(id));
     }
