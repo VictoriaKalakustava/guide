@@ -1,13 +1,17 @@
 package com.itransition.guide.entity;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Indexed
 @Entity
 public class Tag {
-    Long id;
-    String name;
-    List<Instruction> instructions;
+    private Long id;
+    private String name;
+    private List<Instruction> instructions;
 
     public Tag() {
 
@@ -24,6 +28,7 @@ public class Tag {
         this.id = id;
     }
 
+    @Field
     @Column(name="name", nullable = false)
     public String getName() {
         return name;

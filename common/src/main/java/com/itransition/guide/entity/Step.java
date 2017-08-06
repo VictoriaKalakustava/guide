@@ -1,15 +1,21 @@
 package com.itransition.guide.entity;
 
+import org.hibernate.search.annotations.ContainedIn;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.IndexedEmbedded;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Indexed
 @Entity
 public class Step {
-    Long id;
-    String title;
-    List<Element> elements;
-    Instruction instruction;
-    Integer position;
+    private Long id;
+    private String title;
+    private List<Element> elements;
+    private Instruction instruction;
+    private Integer position;
 
     public Step() {
     }
@@ -25,6 +31,7 @@ public class Step {
         this.id = id;
     }
 
+    @ContainedIn
     @ManyToOne
     public Instruction getInstruction() {
         return instruction;
@@ -34,6 +41,7 @@ public class Step {
         this.instruction = instruction;
     }
 
+    @Field
     @Column(name = "title", nullable = false, updatable = false)
     public String getTitle() {
         return title;
@@ -52,6 +60,7 @@ public class Step {
         this.position = position;
     }
 
+    @IndexedEmbedded
     @OneToMany(mappedBy = "step", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Element> getElements() {
         return elements;

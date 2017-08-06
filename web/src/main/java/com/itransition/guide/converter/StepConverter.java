@@ -4,6 +4,7 @@ package com.itransition.guide.converter;
 import com.itransition.guide.dto.ElementDTO;
 import com.itransition.guide.dto.StepDTO;
 import com.itransition.guide.entity.Element;
+import com.itransition.guide.entity.Instruction;
 import com.itransition.guide.entity.Step;
 
 import java.util.ArrayList;
@@ -28,12 +29,12 @@ public class StepConverter {
     public static Step convert(StepDTO stepDTO){
         Step step = new Step();
         step.setId(stepDTO.getId());
-        step.setInstruction(stepDTO.getInstruction());
+        step.setInstruction(new Instruction());
+        step.getInstruction().setId(stepDTO.getInstructionId());
         step.setTitle(stepDTO.getTitle());
         List<Element> element = new ArrayList<>();
         for(ElementDTO elementDTO:stepDTO.getElements()){
             element.add(ElementConverter.convert(elementDTO));
-
         }
         step.setElements(element);
         step.setPosition(stepDTO.getPosition());

@@ -1,13 +1,18 @@
 package com.itransition.guide.entity;
 
+import org.hibernate.search.annotations.ContainedIn;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.*;
 
+@Indexed
 @Entity
 public class Comment {
-    Long id;
-    Instruction instruction;
-    User user;
-    String text;
+    private Long id;
+    private Instruction instruction;
+    private User user;
+    private String text;
 
     public Comment() {
 
@@ -24,6 +29,7 @@ public class Comment {
         this.id = id;
     }
 
+    @ContainedIn
     @ManyToOne
     public Instruction getInstruction() {
         return instruction;
@@ -42,6 +48,7 @@ public class Comment {
         this.user = user;
     }
 
+    @Field
     @Column(name="value", nullable = false)
     public String getText() {
         return text;
