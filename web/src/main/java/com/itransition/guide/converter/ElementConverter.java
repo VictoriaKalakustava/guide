@@ -2,12 +2,12 @@ package com.itransition.guide.converter;
 
 import com.itransition.guide.dto.ElementDTO;
 import com.itransition.guide.entity.Element;
+import com.itransition.guide.entity.Step;
 
 public class ElementConverter {
     public static ElementDTO convert(Element element) {
         ElementDTO dto = new ElementDTO();
         dto.setId(element.getId());
-        //dto.setStep(element.getStep());
         dto.setType(element.getType());
         dto.setValue(element.getValue());
         dto.setPosition(element.getPosition());
@@ -17,7 +17,8 @@ public class ElementConverter {
     public static Element convert(ElementDTO elementDTO){
         Element element = new Element();
         element.setId(elementDTO.getId());
-        element.setStep(elementDTO.getStep());
+        element.setStep(new Step());
+        element.getStep().setId(elementDTO.getStepId());
         element.setType(elementDTO.getType());
         element.setValue(elementDTO.getValue());
         element.setPosition(elementDTO.getPosition());

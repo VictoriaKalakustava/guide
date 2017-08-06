@@ -1,9 +1,14 @@
 package com.itransition.guide.entity;
 
+import org.hibernate.search.annotations.ContainedIn;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+@Indexed
 @Entity
 public class User implements Serializable {
 
@@ -98,6 +103,7 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    @Field
     @Column(name = "login", nullable = false, insertable = true, updatable = true)
     public String getLogin() {
         return login;
@@ -134,6 +140,7 @@ public class User implements Serializable {
         this.enableKey = enableKey;
     }
 
+    @ContainedIn
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public List<Instruction> getInstructions() {
         return instructions;

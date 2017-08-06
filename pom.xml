@@ -5,7 +5,7 @@
   <artifactId>guide</artifactId>
   <version>1.0</version>
   <packaging>pom</packaging>
-  <firstName>guide</firstName>
+  <name>guide</name>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
