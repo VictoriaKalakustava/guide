@@ -3,8 +3,11 @@ package com.itransition.guide.converter;
 import com.itransition.guide.dto.ElementDTO;
 import com.itransition.guide.entity.Element;
 import com.itransition.guide.entity.Step;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ElementConverter {
+
     public static ElementDTO convert(Element element) {
         ElementDTO dto = new ElementDTO();
         dto.setId(element.getId());

@@ -23,6 +23,8 @@ public class InstructionController {
 
     @RequestMapping(value="/add", method = RequestMethod.POST)
     public ResponseEntity<InstructionDTO> getStep(@RequestBody InstructionDTO dto) {
+        System.out.println("BOTTOM INSTRUTION DTO");
+        System.out.println(dto);
         Instruction instruction = instructionConverter.convert(dto);
         instruction = instructionService.save(instruction);
         dto = instructionConverter.convert(instruction);

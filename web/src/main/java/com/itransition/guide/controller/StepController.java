@@ -21,11 +21,14 @@ public class StepController {
     @Autowired
     StepService stepService;
 
+    @Autowired
+    StepConverter stepConverter;
+
     @RequestMapping(value="/get-by-id/{id}", method = RequestMethod.GET)
     public ResponseEntity<StepDTO> getStep(@PathVariable Long id) {
         Optional<Step> step = stepService.getStepById(id);
         if(step.isPresent()) {
-            return new ResponseEntity<>(StepConverter.convert(step.get()), HttpStatus.OK);
+            return new ResponseEntity<>(stepConverter.convert(step.get()), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
@@ -33,13 +36,21 @@ public class StepController {
     }
 
     @RequestMapping(value="/set-step", method = RequestMethod.POST)
-    public ResponseEntity<StepDTO> setElement(@RequestBody StepDTO stepDTO){
+    public ResponseEntity<StepDTO> setStep(@RequestBody StepDTO stepDTO){
         System.out.println("save step");
         System.out.println(stepDTO.toString());
-        ElementService elementService = new ElementService();
-        Step step = StepConverter.convert(stepDTO);
-        StepDTO dto = StepConverter.convert(stepService.save(step));
+        Step step = stepConverter.convert(stepDTO);
+        StepDTO dto = stepConverter.convert(stepService.save(step));
         System.out.println(dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/del-step", method = RequestMethod.POST)
+    public ResponseEntity<HttpStatus> delStep(@RequestBody StepDTO stepDTO){
+        System.out.println("delete step");
+        System.out.println(stepDTO.toString());
+            Step step = stepConverter.convert(stepDTO);
+            stepService.delete(step);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

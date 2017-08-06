@@ -21,6 +21,8 @@ public class UpdateProfileController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<UserDTO> signUp(@RequestBody UserDTO dto) {
+        System.out.println("BOTTOM DTO");
+        System.out.println(dto);
         /*if(userService.findByLogin(dto.getLogin()).isPresent()) {
             return new ResponseEntity<>(dto, HttpStatus.CONFLICT);
         }

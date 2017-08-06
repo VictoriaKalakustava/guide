@@ -18,14 +18,17 @@ public class InstructionConverter {
     @Autowired
     private UserService userService;
 
-    public static InstructionDTO convert(Instruction instruction) {
+    @Autowired
+    private StepConverter stepConverter;
+
+    public InstructionDTO convert(Instruction instruction) {
         InstructionDTO dto = new InstructionDTO();
         dto.setId(instruction.getId());
         dto.setTitle(instruction.getTitle());
         dto.setUserId(instruction.getUser().getId());
         List<StepDTO> dtoList = new ArrayList<>();
         for (Step step:instruction.getStep()) {
-            dtoList.add(StepConverter.convert(step));
+            dtoList.add(stepConverter.convert(step));
         }
         dto.setStep(dtoList);
         dto.setUserLogin(instruction.getUser().getLogin());
@@ -42,7 +45,7 @@ public class InstructionConverter {
         }
         List<Step> list = new ArrayList<>();
         for (StepDTO step : dto.getStep()) {
-            list.add(StepConverter.convert(step));
+            list.add(stepConverter.convert(step));
         }
         instruction.setStep(list);
         return instruction;
