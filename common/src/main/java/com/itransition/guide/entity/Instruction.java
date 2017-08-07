@@ -72,10 +72,7 @@ public class Instruction {
     }
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "instruction_tag",
-            joinColumns = { @JoinColumn(name = "id_instruction") },
-            inverseJoinColumns = { @JoinColumn(name = "id_tag") })
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "instructions")
     @IndexedEmbedded
     public List<Tag> getTags() {
         return tags;

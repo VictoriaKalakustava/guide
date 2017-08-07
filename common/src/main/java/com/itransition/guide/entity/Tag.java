@@ -29,7 +29,7 @@ public class Tag {
     }
 
     @Field
-    @Column(name="name", nullable = false)
+    @Column(name="name", nullable = false, unique = true)
     public String getName() {
         return name;
     }
@@ -38,7 +38,10 @@ public class Tag {
         this.name = name;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
+    @ManyToMany
+    @JoinTable(name = "instruction_tag",
+            joinColumns = { @JoinColumn(name = "id_tag") },
+            inverseJoinColumns = { @JoinColumn(name = "id_instruction") })
     public List<Instruction> getInstructions() {
         return instructions;
     }

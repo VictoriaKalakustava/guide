@@ -1,7 +1,6 @@
 package com.itransition.guide.dto;
 
 
-import com.itransition.guide.entity.Step;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,4 +16,5 @@ public class InstructionDTO {
     String userLogin;
     Long userId;
     List<StepDTO> step;
+    List<TagDTO> tags;
 }

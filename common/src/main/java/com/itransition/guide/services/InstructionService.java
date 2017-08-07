@@ -15,4 +15,9 @@ public class InstructionService {
     public Instruction save(Instruction instruction) {
         return instructionRepository.saveAndFlush(instruction);
     }
+
+    public Instruction findById(Long id) {
+        return instructionRepository.findById(id);
+    }
 }
+
