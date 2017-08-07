@@ -5,6 +5,7 @@ import com.itransition.guide.dto.StepDTO;
 import com.itransition.guide.entity.Instruction;
 import com.itransition.guide.entity.Step;
 import com.itransition.guide.entity.User;
+import com.itransition.guide.services.InstructionService;
 import com.itransition.guide.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,13 @@ public class InstructionConverter {
     private UserService userService;
 
     @Autowired
+    private InstructionService instructionService;
+
+    @Autowired
     private StepConverter stepConverter;
+
+    @Autowired
+    private TagConverter tagConverter;
 
     public InstructionDTO convert(Instruction instruction) {
         InstructionDTO dto = new InstructionDTO();
@@ -48,6 +55,10 @@ public class InstructionConverter {
             list.add(stepConverter.convert(step));
         }
         instruction.setStep(list);
+
+        System.out.println("*****************************************");
+        System.out.println(instruction.getTags());
+
         return instruction;
     }
 }

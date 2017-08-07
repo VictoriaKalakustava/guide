@@ -4,15 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 @Getter
 @Setter
 @ToString
-public class StepDTO {
+public class CommentDTO {
     private Long id;
-    private String title;
-    private List<ElementDTO> elements;
     private Long instructionId;
-    private Integer position;
+    private Long userId;
+    private String userLogin;
+    private String value;
+    private String userImg;
 }
