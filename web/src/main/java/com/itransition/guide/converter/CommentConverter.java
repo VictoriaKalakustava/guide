@@ -19,7 +19,7 @@ public class CommentConverter {
         Comment comment = new Comment();
         comment.setId(dto.getId());
         comment.setText(dto.getValue());
-        comment.setInstruction(instructionService.findById(dto.getInstructionId()));
+        comment.setInstruction(instructionService.findById(dto.getInstructionId()).get());
         comment.setUser(userService.findById(dto.getUserId()).get());
         return comment;
     }

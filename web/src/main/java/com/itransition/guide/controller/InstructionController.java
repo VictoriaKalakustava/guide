@@ -2,13 +2,10 @@ package com.itransition.guide.controller;
 
 import com.itransition.guide.converter.CommentConverter;
 import com.itransition.guide.converter.InstructionConverter;
-import com.itransition.guide.converter.UserConverter;
 import com.itransition.guide.dto.CommentDTO;
 import com.itransition.guide.dto.InstructionDTO;
-import com.itransition.guide.dto.UserDTO;
 import com.itransition.guide.entity.Comment;
 import com.itransition.guide.entity.Instruction;
-import com.itransition.guide.entity.User;
 import com.itransition.guide.services.CommentService;
 import com.itransition.guide.services.InstructionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/instruction")
@@ -74,7 +70,7 @@ public class InstructionController {
 
     @RequestMapping(value="/get", method = RequestMethod.POST)
     public ResponseEntity<InstructionDTO> getStep(@RequestBody Long id) {
-        Instruction instruction = instructionService.findById(id);
+        Instruction instruction = instructionService.findById(id).get();
         return new ResponseEntity<>(instructionConverter.convert(instruction), HttpStatus.OK);
     }
 }
